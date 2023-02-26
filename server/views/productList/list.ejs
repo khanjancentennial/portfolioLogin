@@ -119,44 +119,42 @@
                         
                     <% } %>  -->
 
+            <!-- add sorting to display the contact list in alphabatical order  -->
 
+                    <% ProductList.sort((a, b) => (a.person_name || "").toString().localeCompare((b.person_name || "").toString())).forEach(person => { %>
 
-                    <% for (let index = 0; index<ProductList.length; index ++) { console.log(ProductList[index]._id)%>
                         <tr>
                             <td class="text-center col-2">
-                                <%= ProductList[index].person_name %>
+                                <%= person.person_name %>
                             </td>
                         
                         
                             <td class="text-center col-2">
-                                <%= ProductList[index].contact_number %>
+                                <%= person.contact_number %>
                             </td>
                         
                             <td class="text-center col-1">
-                                <%= ProductList[index].email_id %>
+                                <%= person.email_id %>
                             </td>
                         
 
                             <% if(typeof displayname == 'string' && displayname == 'Admin') {%>
                                 <td class="text-center col-1"> 
-                                    <a href="/productList/edit/<%=ProductList[index]._id%>" class="btn btn-primary">
+                                    <a href="/productList/edit/<%=person._id%>" class="btn btn-primary">
                                         <i class="fas fa-pencil alt"></i>
                                     </a>
                                 </td>
     
                                 <td class="text-center col-1"> 
-                                    <a href="/productList/delete/<%=ProductList[index]._id%>" class="btn btn-danger">
+                                    <a href="/productList/delete/<%=person._id%>" class="btn btn-danger">
                                         <i class="fas fa-trash alt"></i>
                                     </a>
                                 </td>
     
                                 <%}%>
-                            
-                            
                         </tr>
                         
-                    <% } %> 
-
+                <% }) %>
 
                 </table>
                 <br>
